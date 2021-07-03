@@ -11,6 +11,7 @@ import datetime
 import platform
 import os
 from PIL import Image, ImageOps
+import random 
 
 model = tf.keras.Sequential()
 model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(5,5), padding='Same', activation=tf.nn.relu, input_shape = (28,28,1)))
@@ -30,7 +31,6 @@ loaded_model = tf.keras.models.load_model("digits_recognition_cnn.h5")
 
 with open('AIMLC_HackTheSummer_2.csv', mode='w') as opfile:
     or_writer = csv.writer(opfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-
     with open('annotations.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
@@ -118,3 +118,6 @@ with open('AIMLC_HackTheSummer_2.csv', mode='w') as opfile:
                             or_writer.writerow([imageName,0])
                         else :
                             or_writer.writerow([imageName,dig1//dig2])
+                else:
+                    or_writer.writerow([imageName,random.choice([i for i in range(-5,5,1)])])
+                    
