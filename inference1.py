@@ -12,6 +12,7 @@ import platform
 import os
 from PIL import Image, ImageOps
 import random 
+import sys
 
 model = tf.keras.Sequential()
 model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(5,5), padding='Same', activation=tf.nn.relu, input_shape = (28,28,1)))
@@ -29,10 +30,7 @@ model.add(tf.keras.layers.Dense(14,activation=tf.nn.softmax))
 
 loaded_model = tf.keras.models.load_model("digits_recognition_cnn.h5")
 
-# list of image pixels at 0th position list of pixels of 0th image at (0,0) th position list of pixels of first part of 0th image and so on
-pixelList = []
-#list of type corresponding to ith image fromcsv
-typelist = []
+folderimg = sys.argv[0]
 
 with open('AIMLC_HackTheSummer_1.csv', mode='w') as opfile:
     or_writer = csv.writer(opfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -41,7 +39,7 @@ with open('AIMLC_HackTheSummer_1.csv', mode='w') as opfile:
         for row in reader:
             imageName = row[0]
             expression_type = row[1]
-            path = os.path.join("test_data", imageName)  # NOTE : replace "test_data" with path of test dataset 
+            path = os.path.join(folderimg, imageName)  # NOTE : replace "test_data" with path of test dataset 
             if(os.path.exists(path)):
                 im = Image.open(path, "r")
                 im = ImageOps.invert(im)
