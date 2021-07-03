@@ -1,9 +1,32 @@
 import csv
-from PIL import Image, ImageOps
-import os
 import numpy as np
 from tensorflow import keras
-loaded_model = keras.models.load_model('digits_recognition_cnn.h5')
+import tensorflow as tf
+import matplotlib.pyplot as plt 
+import seaborn as sn
+import numpy as np
+import pandas as pd
+import math
+import datetime
+import platform
+import os
+from PIL import Image, ImageOps
+
+model = tf.keras.Sequential()
+model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(5,5), padding='Same', activation=tf.nn.relu, input_shape = (28,28,1)))
+model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(5,5), padding='Same', activation=tf.nn.relu))
+model.add(tf.keras.layers.MaxPool2D(pool_size=(2,2))) 
+model.add(tf.keras.layers.Dropout(0.25))
+model.add(tf.keras.layers.Conv2D(filters=64, kernel_size=(3,3), padding='Same', activation=tf.nn.relu, input_shape = (28,28,1)))
+model.add(tf.keras.layers.Conv2D(filters=64, kernel_size=(3,3), padding='Same', activation=tf.nn.relu))
+model.add(tf.keras.layers.MaxPool2D(pool_size=(2,2),strides=(2,2)))
+model.add(tf.keras.layers.Dropout(0.25))
+model.add(tf.keras.layers.Flatten()) 
+model.add(tf.keras.layers.Dense(256,activation=tf.nn.relu))
+model.add(tf.keras.layers.Dropout(0.25)) 
+model.add(tf.keras.layers.Dense(14,activation=tf.nn.softmax))
+
+loaded_model = tf.keras.models.load_model("digits_recognition_cnn.h5")
 
 # list of image pixels at 0th position list of pixels of 0th image at (0,0) th position list of pixels of first part of 0th image and so on
 pixelList = []
@@ -18,7 +41,7 @@ with open('AIMLC_HackTheSummer_1.csv', mode='w') as opfile:
         for row in reader:
             imageName = row[0]
             expression_type = row[1]
-            path = os.path.join("data", imageName)
+            path = os.path.join("test_data", imageName)  # NOTE : replace "test_data" with path of test dataset 
             if(os.path.exists(path)):
                 im = Image.open(path, "r")
                 im = ImageOps.invert(im)
