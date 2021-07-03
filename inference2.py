@@ -30,7 +30,7 @@ model.add(tf.keras.layers.Dense(14,activation=tf.nn.softmax))
 
 loaded_model = tf.keras.models.load_model("digits_recognition_cnn.h5")
 
-folderimg = sys.argv[0]
+folderimg = sys.argv[1]
 
 
 
