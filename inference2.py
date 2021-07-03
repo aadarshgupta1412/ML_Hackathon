@@ -1,5 +1,5 @@
 import csv
-from PIL import Image
+from PIL import Image, ImageOps
 import os
 import numpy as np
 from tensorflow import keras
@@ -16,6 +16,7 @@ with open('AIMLC_HackTheSummer_2.csv', mode='w') as opfile:
             path = os.path.join("data", imageName)
             if(os.path.exists(path)):
                 im = Image.open(path, "r")
+                im = ImageOps.invert(im)
                 width, height = im.size
                 # box1 is 0  to width/3 
                 box1 = (0, 0, width/3, height)
