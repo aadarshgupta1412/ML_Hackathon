@@ -1,4 +1,3 @@
-
 The following are required libraries expected as a pre-requisite to be installed for evaluating or training purposes of the code :
 
 [1] tensorflow
