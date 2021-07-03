@@ -1,0 +1,20 @@
+
+
+The architecture using Convolutional Neural Networks for handwritten digit and operator recognition for an expression of two one-digit numbers and an operator, 
+along with the positional prediction for operator (i.e. infix/prefix/postfix) has been solely developed by the Team AIMLC_HackTheSummer, 
+comprising of Aadarsh Gupta (EE, IIT-Delhi), Kuldeep Meena (CSE, IIT Delhi) and Vishal Saini(EE, IIT Delhi) for the purpose of submission to problem statement for
+Hack The Summer by AIMLC, IIT Delhi. 
+
+This document clarifies the case of no plagiarism and also intends to furnish below-mentioned open-source websites for the sole purpose of refernce 
+and learning to train the model for our own purpose. 
+
+[1] https://www.kaggle.com/arunrk7/digit-recognition-using-cnn-99-accuracy/notebook#MNIST-Handwritten-Digit-Recognizer-using-Deep-CNN
+
+[2] https://colab.research.google.com/github/trekhleb/machine-learning-experiments/blob/master/experiments/digits_recognition_cnn/digits_recognition_cnn.ipynb#scrollTo=LVKJxo9OOh9j
+
+[3] https://www.sitepoint.com/keras-digit-recognition-tutorial/ 
+
+[4] https://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/
+
+
+  
