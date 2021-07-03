@@ -1,9 +1,32 @@
 import csv
-from PIL import Image, ImageOps
-import os
 import numpy as np
 from tensorflow import keras
-loaded_model = keras.models.load_model('digits_recognition_cnn.h5')
+import tensorflow as tf
+import matplotlib.pyplot as plt 
+import seaborn as sn
+import numpy as np
+import pandas as pd
+import math
+import datetime
+import platform
+import os
+from PIL import Image, ImageOps
+
+model = tf.keras.Sequential()
+model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(5,5), padding='Same', activation=tf.nn.relu, input_shape = (28,28,1)))
+model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(5,5), padding='Same', activation=tf.nn.relu))
+model.add(tf.keras.layers.MaxPool2D(pool_size=(2,2))) 
+model.add(tf.keras.layers.Dropout(0.25))
+model.add(tf.keras.layers.Conv2D(filters=64, kernel_size=(3,3), padding='Same', activation=tf.nn.relu, input_shape = (28,28,1)))
+model.add(tf.keras.layers.Conv2D(filters=64, kernel_size=(3,3), padding='Same', activation=tf.nn.relu))
+model.add(tf.keras.layers.MaxPool2D(pool_size=(2,2),strides=(2,2)))
+model.add(tf.keras.layers.Dropout(0.25))
+model.add(tf.keras.layers.Flatten()) 
+model.add(tf.keras.layers.Dense(256,activation=tf.nn.relu))
+model.add(tf.keras.layers.Dropout(0.25)) 
+model.add(tf.keras.layers.Dense(14,activation=tf.nn.softmax))
+
+loaded_model = tf.keras.models.load_model("digits_recognition_cnn.h5")
 
 with open('AIMLC_HackTheSummer_2.csv', mode='w') as opfile:
     or_writer = csv.writer(opfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -13,7 +36,7 @@ with open('AIMLC_HackTheSummer_2.csv', mode='w') as opfile:
         for row in reader:
             imageName = row[0]
             expression_type = row[1]
-            path = os.path.join("data", imageName)
+            path = os.path.join("test_data", imageName)           # NOTE : Replace "test_data" with path of test dataset
             if(os.path.exists(path)):
                 im = Image.open(path, "r")
                 im = ImageOps.invert(im)
@@ -66,7 +89,10 @@ with open('AIMLC_HackTheSummer_2.csv', mode='w') as opfile:
                     elif(dig1==12):
                         or_writer.writerow([imgname,dig2*dig3])
                     elif(dig1==13):
-                        or_writer.writerow([imgname,dig2//dig3])
+                        if (dig3==0):
+                            or_writer.writerow([imgname,0])
+                        else :
+                            or_writer.writerow([imgname,dig2//dig3])
                 elif(dig1<10 and dig2>9 and dig3<10):
                     if(dig2==10):
                         or_writer.writerow([imgname,dig1+dig3])
@@ -75,7 +101,11 @@ with open('AIMLC_HackTheSummer_2.csv', mode='w') as opfile:
                     elif(dig2==12):
                         or_writer.writerow([imgname,dig1*dig3])
                     elif(dig2==13):
-                        or_writer.writerow([imgname,dig1//dig3])
+                        if (dig3==0):
+                            or_writer.writerow([imgname,0])
+                        else :
+                            or_writer.writerow([imgname,dig1//dig3])
+                        
                 elif(dig1<10 and dig2<10 and dig3>9):
                     if(dig3==10):
                         or_writer.writerow([imgname,dig1+dig2])
@@ -83,5 +113,8 @@ with open('AIMLC_HackTheSummer_2.csv', mode='w') as opfile:
                         or_writer.writerow([imgname,dig1-dig2])
                     elif(dig3==12):
                         or_writer.writerow([imgname,dig1*dig2])
-                    elif(dig==13):
-                        or_writer.writerow([imgname,dig1//dig2])
+                    elif(dig3==13):
+                        if (dig2==0):
+                            or_writer.writerow([imgname,0])
+                        else :
+                            or_writer.writerow([imgname,dig1//dig2])
