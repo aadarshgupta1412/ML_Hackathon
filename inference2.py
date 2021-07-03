@@ -36,7 +36,7 @@ with open('AIMLC_HackTheSummer_2.csv', mode='w') as opfile:
         for row in reader:
             imageName = row[0]
             expression_type = row[1]
-            path = os.path.join("data", imageName)           # NOTE : Replace "test_data" with path of test dataset
+            path = os.path.join("test_data", imageName)           # NOTE : Replace "test_data" with path of test dataset
             if(os.path.exists(path)):
                 im = Image.open(path, "r")
                 im = ImageOps.invert(im)
