@@ -23,7 +23,17 @@ Techniques and Datasets used:
 ### Instructions For Using The Software:
 -   Unzip the directory to your desired location.
 -   Run command pip install -r requirements.txt in terminal
--   Replace file with name "test_data"(line no. 44 and 39 repectively) in the code of inference1.py and inference2.py to the desired test folder name 
--   Run inference1.py by using command python inference1.py and the output will be a new csv file with name AIMLC_HackTheSummer_1.csv 
--   Run inference2.py by using command python inference1.py and the output will be a new csv file with name AIMLC_HackTheSummer_2.csv
+-   Run inference1.py by using command python inference1.py <relative test image folder path> and the output will be a new csv file with name AIMLC_HackTheSummer_1.csv 
+-   Run inference2.py by using command python inference2.py <relative test image folder path> and the output will be a new csv file with name AIMLC_HackTheSummer_2.csv
+
+
+
+
+
+
+
+
+
+
+
 
