@@ -36,7 +36,7 @@ with open('AIMLC_HackTheSummer_2.csv', mode='w') as opfile:
         for row in reader:
             imageName = row[0]
             expression_type = row[1]
-            path = os.path.join("test_data", imageName)           # NOTE : Replace "test_data" with path of test dataset
+            path = os.path.join("data", imageName)           # NOTE : Replace "test_data" with path of test dataset
             if(os.path.exists(path)):
                 im = Image.open(path, "r")
                 im = ImageOps.invert(im)
@@ -83,38 +83,38 @@ with open('AIMLC_HackTheSummer_2.csv', mode='w') as opfile:
                 
                 if(dig1>9 and dig2<10 and dig3<10):
                     if(dig1==10):
-                        or_writer.writerow([imgname,dig2+dig3])
+                        or_writer.writerow([imageName,dig2+dig3])
                     elif(dig1==11):
-                        or_writer.writerow([imgname,dig2-dig3])
+                        or_writer.writerow([imageName,dig2-dig3])
                     elif(dig1==12):
-                        or_writer.writerow([imgname,dig2*dig3])
+                        or_writer.writerow([imageName,dig2*dig3])
                     elif(dig1==13):
                         if (dig3==0):
-                            or_writer.writerow([imgname,0])
+                            or_writer.writerow([imageName,0])
                         else :
-                            or_writer.writerow([imgname,dig2//dig3])
+                            or_writer.writerow([imageName,dig2//dig3])
                 elif(dig1<10 and dig2>9 and dig3<10):
                     if(dig2==10):
-                        or_writer.writerow([imgname,dig1+dig3])
+                        or_writer.writerow([imageName,dig1+dig3])
                     elif(dig2==11):
-                        or_writer.writerow([imgname,dig1-dig3])
+                        or_writer.writerow([imageName,dig1-dig3])
                     elif(dig2==12):
-                        or_writer.writerow([imgname,dig1*dig3])
+                        or_writer.writerow([imageName,dig1*dig3])
                     elif(dig2==13):
                         if (dig3==0):
-                            or_writer.writerow([imgname,0])
+                            or_writer.writerow([imageName,0])
                         else :
-                            or_writer.writerow([imgname,dig1//dig3])
+                            or_writer.writerow([imageName,dig1//dig3])
                         
                 elif(dig1<10 and dig2<10 and dig3>9):
                     if(dig3==10):
-                        or_writer.writerow([imgname,dig1+dig2])
+                        or_writer.writerow([imageName,dig1+dig2])
                     elif(dig3==11):
-                        or_writer.writerow([imgname,dig1-dig2])
+                        or_writer.writerow([imageName,dig1-dig2])
                     elif(dig3==12):
-                        or_writer.writerow([imgname,dig1*dig2])
+                        or_writer.writerow([imageName,dig1*dig2])
                     elif(dig3==13):
                         if (dig2==0):
-                            or_writer.writerow([imgname,0])
+                            or_writer.writerow([imageName,0])
                         else :
-                            or_writer.writerow([imgname,dig1//dig2])
+                            or_writer.writerow([imageName,dig1//dig2])
