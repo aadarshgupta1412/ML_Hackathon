@@ -11,6 +11,7 @@ import datetime
 import platform
 import os
 from PIL import Image, ImageOps
+import random 
 
 model = tf.keras.Sequential()
 model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(5,5), padding='Same', activation=tf.nn.relu, input_shape = (28,28,1)))
@@ -35,7 +36,6 @@ typelist = []
 
 with open('AIMLC_HackTheSummer_1.csv', mode='w') as opfile:
     or_writer = csv.writer(opfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-
     with open('annotations.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
@@ -87,8 +87,10 @@ with open('AIMLC_HackTheSummer_1.csv', mode='w') as opfile:
                 dig3 = int(dig3)
                 
                 if(dig1>9 and dig2<10 and dig3<10):
-                    or_writer.writerow([imgname,"prefix"])
+                    or_writer.writerow([imageName,"prefix"])
                 elif(dig1<10 and dig2>9 and dig3<10):
-                    or_writer.writerow([imgname,"infix"])
+                    or_writer.writerow([imageName,"infix"])
                 elif(dig1<10 and dig2<10 and dig3>9):
-                    or_writer.writerow([imgname,"postfix"])
+                    or_writer.writerow([imageName,"postfix"])
+                else:
+                    or_writer.writerow([imageName,random.choice(["prefix","infix","postfix"])])
