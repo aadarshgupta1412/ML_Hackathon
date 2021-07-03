@@ -1,0 +1,15 @@
+
+The following are required libraries expected as a pre-requisite to be installed for evaluating or training purposes of the code :
+
+[1] tensorflow
+[2] matplotlib
+[3] seaborn 
+[4] numpy 
+[5] pandas 
+[6] math
+[7] datetime
+[8] pydot
+[9] scipy
+[10] graphviz
+[11] keras
+[12] platform
